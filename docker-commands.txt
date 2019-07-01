@@ -21,3 +21,4 @@
 - docker build -t <tag name> . - Тэг по конвенции должен состоять из <your Docker id>/<Repo/Project name>:<version (latest)>
 - docker commit -c ‘CMD [‘redis-server’]’ <container id> - создаст новый image на основе указанного контейнера и добавит указанную комманду
 - docker run -p <port-incoming>:<port-inside container> <image-name> - мапаем внешний порт с портом в контейнере
+- docker run -d <image name> - run docker in background
