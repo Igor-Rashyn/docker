@@ -23,3 +23,6 @@
 - docker run -p <port-incoming>:<port-inside container> <image-name> - мапаем внешний порт с портом в контейнере
 - docker run -d <image name> - run docker in background
 - docker build -f <file name> . - если у докерфайла кастоемное имя
+- docker run -v /app/node_modules -v $(pwd):/app <image id/name> - The -v flag mounts the current working directory into the container.
+      $(pwd):/app - $(pwd) - ':' map folder inside a container (/app) with folder outside of the container (%(pwd), pwd is command not all shell supports it) 
+      - /app/node_modules - it says don't map it to anything, just use what you have in the container
