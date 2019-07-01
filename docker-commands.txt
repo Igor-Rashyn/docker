@@ -1,0 +1,23 @@
+- docker image ls - просмотреть все images в докере
+- docker container ls —all  - просмотреть список всех контейнеров
+- docker —help, docker container —help, docker container ls —help, docker run —help
+- docker container stop <NAME>  - остановить контейнер
+- docker run —detach (запустить в бэкграунде) —publish 80:80 (указать наружный порт для конекта) —name web server nginx (назначить котейнеру nginx имя ‘webserver’ )
+- docker container rm <NAME> (удалить контейнер по имени, через пробел можно перечислить несколько контейнеров)
+- docker ps - running containers
+- docker run <image name> <command> - можно запустить контейнер с другой командой, просто после имени image написать команду 
+- docker tun = docker create <image name> + docker start -a (return output to the command line) <container id>
+- docker system prune - удалит все контейнеры, удалит все имеджи и отчистит кэш
+- docker logs <container id> - вернет все что происходило в контейнере
+- docker stop <container id> - остановит контейнер, даст время закрыться всем процессам корректно
+- docker kill <container id>  - убьет все процессы сразу не давая возможностей выполнить доп работы при выключении контейнера (например: почистить кэш)
+- docker exec -it <conteiner id> <комманду для выполнения> - команда подключиться к существующему контейнеру и запустит там программу. -it - дает доступ на ввод текста, то есть без данной комманды, мы просто запустим вторую программу в докере но у нас не будет доступа на ввод/вывод из нашей командной строки. 
+    Например:
+          1. docker run redis - мы запустили контейнер с редисом
+          2.docker exec -it 0d5411a929f7 redis-cli - мы подключились к контейнеру с редисом и запустили в той среде redis-cli
+- docker exec -it <conteiner id> sh - полный доступ к командной строке контейнера
+      Control + D / Command + C - выйти/закрыть контейнер
+- docker run -it <image name> sh - сразу можно запустить шел в созданном контейнере
+- docker build -t <tag name> . - Тэг по конвенции должен состоять из <your Docker id>/<Repo/Project name>:<version (latest)>
+- docker commit -c ‘CMD [‘redis-server’]’ <container id> - создаст новый image на основе указанного контейнера и добавит указанную комманду
+- docker run -p <port-incoming>:<port-inside container> <image-name> - мапаем внешний порт с портом в контейнере
