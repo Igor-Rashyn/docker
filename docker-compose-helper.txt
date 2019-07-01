@@ -1,0 +1,1 @@
+- docker-compose up --build ---- it will buid all images and run
