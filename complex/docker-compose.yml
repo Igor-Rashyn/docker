@@ -34,6 +34,9 @@ services:
     volumes:
       - /app/node_modules
       - ./worker:/app
+    environment:
+      - REDIS_HOST=redis #name of a service
+      - REDIS_PORT=6379
   proxy:
     restart: always
     build:
