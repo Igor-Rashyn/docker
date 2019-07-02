@@ -1,0 +1,24 @@
+language: node_js
+
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t igor/multi-docker -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true igor/multi-docker npm run test -- --coverage
+
+after_success:
+  - docker build -t igor/multi-client ./client
+  - docker build -t igor/multi-nginx ./nginx
+  - docker build -t igor/multi-api ./api
+  - docker build -t igor/multi-worker ./worker
+  #Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "DOCKER_ID" --password-stdin # DOCKER_ID and DOCKER_PASSWORD should be set up in Travis env varibles
+  #Take those images and push them to docker hub
+  - docker push igor/multi-client
+  - docker push igor/multi-nginx
+  - docker push igor/multi-api
+  - docker push igor/multi-worker
