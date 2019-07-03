@@ -1,0 +1,1 @@
+kind: Pod - gruping of containers. can run one or more containers.
