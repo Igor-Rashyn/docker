@@ -5,23 +5,23 @@ services:
   - docker
 
 before_install:
-  - docker build -t igor/multi-docker -f ./client/Dockerfile.dev ./client
+  - docker build -t $DOCKER_ID/multi-docker -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true igor/multi-docker npm run test -- --coverage
+  - docker run -e CI=true $DOCKER_ID/multi-docker npm run test -- --coverage
 
 after_success:
-  - docker build -t igor/multi-client ./client
-  - docker build -t igor/multi-nginx ./nginx
-  - docker build -t igor/multi-api ./api
-  - docker build -t igor/multi-worker ./worker
+  - docker build -t $DOCKER_ID/multi-client ./client
+  - docker build -t $DOCKER_ID/multi-nginx ./nginx
+  - docker build -t $DOCKER_ID/multi-api ./api
+  - docker build -t $DOCKER_ID/multi-worker ./worker
   #Log in to the docker CLI
-  - echo "$DOCKER_PASSWORD" | docker login -u "DOCKER_ID" --password-stdin # DOCKER_ID and DOCKER_PASSWORD should be set up in Travis env varibles
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin # DOCKER_ID and DOCKER_PASSWORD should be set up in Travis env varibles
   #Take those images and push them to docker hub
-  - docker push igor/multi-client
-  - docker push igor/multi-nginx
-  - docker push igor/multi-api
-  - docker push igor/multi-worker
+  - docker push $DOCKER_ID/multi-client
+  - docker push $DOCKER_ID/multi-nginx
+  - docker push $DOCKER_ID/multi-api
+  - docker push $DOCKER_ID/multi-worker
 
 # deploy:
 #   provider: elasticbeanstalk
