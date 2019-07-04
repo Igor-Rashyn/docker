@@ -8,9 +8,5 @@ spec:
   containers:
   - name: client
     image: nishik/multi-client
-    resources:
-      limits:
-        memory: "128Mi"
-        cpu: "500m"
     ports:
       - containerPort: 3000
