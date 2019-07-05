@@ -8,3 +8,8 @@ kind: Deployment - runs a set of identical pods. Monitors the state of each pod,
   kubectl apply -f client-node-port.yaml  - create pods/services/etc
   kubectl describe <container type> <container name>  - get information about container
   kubectl delete -f <config file> - delete running container
+
+  kubectl set image <object_type>/<object_name> <Container_name>=<new image to use> - перезапустит контейнер з переопределенным свойством (свойство: image) и указываем что мы хотим
+  kubectl set image deployment/client-deployment client=nishik/multi-client:v2
+
+  eval $(minikube docker-env)  --   команда перенастроит shell смотреть на VM на которой стоит кубернет
