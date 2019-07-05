@@ -11,5 +11,7 @@ kind: Deployment - runs a set of identical pods. Monitors the state of each pod,
 
   kubectl set image <object_type>/<object_name> <Container_name>=<new image to use> - перезапустит контейнер з переопределенным свойством (свойство: image) и указываем что мы хотим
   kubectl set image deployment/client-deployment client=nishik/multi-client:v2
+  kubectl delete deployment <deployment_name> - удалить
+  kubectl create secret generic <secret_name> --from--literal key=value - создать секрет для хранения паролей, ssh и тд
 
   eval $(minikube docker-env)  --   команда перенастроит shell смотреть на VM на которой стоит кубернет
