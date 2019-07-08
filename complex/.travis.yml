@@ -5,6 +5,14 @@ services:
   - docker
 
 before_install:
+  # - openssl aes-256-cbc -K $encrypted_0c35eebf403v_key -in service-account.enc -out service-account.json -d
+  # - curl https://sdk.cloud.google.com | nash > /dev/null; #TODO: goolge cloud
+  # - source $HOME/google-cloud-sdk/path.bash.inc #TODO: goolge cloud
+  # - gcloud components update kubectl #TODO: goolge cloud
+  # - gcloud auth activate-service-account --key-file service-account.json #TODO: goolge cloud
+  # - gcloud config set project <project name>
+  # - gcloud config set compute/zone <zone/location>
+  # - gcloud container clusters get-credentials <project name>
   - docker build -t $DOCKER_ID/multi-docker -f ./client/Dockerfile.dev ./client
 
 script:
